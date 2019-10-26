@@ -8,12 +8,11 @@ class QuoteModel:
         self.quote = quote
 
     def json(self):
-        return {'id': self._id, 'quote':, self.quote}
+        return {'id': self._id, 'quote': self.quote}
 
     @classmethod
     def find_by_id(cls, _id):
-        query = "SELECT * FROM quotes WHERE id=?"
-        result = cursor.execute(query, (_id,))
+        result = cursor.execute("SELECT quote FROM quotes WHERE _id = %s", (_id,))
         row = cursor.fetchone()
 
         if row:
